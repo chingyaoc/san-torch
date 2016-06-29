@@ -79,7 +79,7 @@ end
 
 function layer:evaluate()
     self.net:evaluate()
-    self.masking:training()
+    self.masking:evaluate()
     self.cnn:evaluate()
 end
 
