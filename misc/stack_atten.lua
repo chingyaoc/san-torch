@@ -52,6 +52,10 @@ end
 function layer:updateGradInput(input, gradOutput)
   local ques_feat = input[1]
   local img_feat = input[2]
-  self.gradInput = self.atten_encode:backward({ques_feat, img_feat}, gradOutput)
+
+  local d_ques_feat, d_img_feat = unpack(self.atten_encode:backward({ques_feat, img_feat}, gradOutput))
+
+  self.gradInput = {d_ques_feat, d_img_feat}
+
   return self.gradInput
 end
