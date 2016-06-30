@@ -48,10 +48,8 @@ function attention.stack_atten(input_size, att_size, batch_size, img_seq_size, o
 
 
     -- Final Answer Prdict
-    local score = nn.Linear(input_size, output_size)(u2)	    -- [batch_size, 1000]
-    local p_ans = nn.SoftMax()(score) 			            -- [batch_size, 1000]
-
-    table.insert(outputs, p_ans)
+    local score = nn.Linear(input_size, output_size)(u2)	    -- [batch_size, 1000]	
+    table.insert(outputs, score)
 
     return nn.gModule(inputs, outputs)
 end
