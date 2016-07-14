@@ -1,4 +1,4 @@
-# Torch implementation for Stacked Attention Networks for Image Question Answering 
+# Torch Implementation for Stacked Attention Networks for Image Question Answering 
 
 Train a Stacked Attention Network for Image Question Answering on VQA dataset.  For more information, please refer the [paper](https://arxiv.org/abs/1511.02274) and original [theano code](https://github.com/zcyang/imageqa-san).
 
