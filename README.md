@@ -2,6 +2,7 @@
 
 Train a Stacked Attention Network for Image Question Answering on VQA dataset.  For more information, please refer the [paper](https://arxiv.org/abs/1511.02274) and original [theano code](https://github.com/zcyang/imageqa-san).
 
+![teaser results](https://github.com/JamesChuanggg/san-torch/blob/master/file/VQA.png?raw=true)
 
 ### Requirements
 This code is written in Lua and requires [Torch](http://torch.ch/). The preprocssinng code is in Python, and you need to install [NLTK](http://www.nltk.org/) if you want to use NLTK to tokenize the question.
