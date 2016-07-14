@@ -26,10 +26,10 @@ cmd:text()
 cmd:text('Options')
 
 -- Data input settings
-cmd:option('-input_img_train_h5','../HieCoAttenVQA/data/vqa_data_img_vgg_train_split1.h5','path to the h5file containing the image feature')
-cmd:option('-input_img_test_h5','../HieCoAttenVQA/data/vqa_data_img_vgg_test_split1.h5','path to the h5file containing the image feature')
-cmd:option('-input_ques_h5','../HieCoAttenVQA/data/vqa_data_prepro_split1.h5','path to the h5file containing the preprocessed dataset')
-cmd:option('-input_json','../HieCoAttenVQA/data/vqa_data_prepro_split1.json','path to the json file containing additional info and vocab')
+cmd:option('-input_img_train_h5','data/vqa_data_img_vgg_train.h5','path to the h5file containing the image feature')
+cmd:option('-input_img_test_h5','data/vqa_data_img_vgg_test.h5','path to the h5file containing the image feature')
+cmd:option('-input_ques_h5','data/vqa_data_prepro.h5','path to the h5file containing the preprocessed dataset')
+cmd:option('-input_json','data/vqa_data_prepro.json','path to the json file containing additional info and vocab')
 
 cmd:option('-start_from', '', 'path to a model checkpoint to initialize model weights from. Empty = don\'t')
 cmd:option('-feature_type', 'VGG', 'VGG or Residual')
@@ -194,7 +194,6 @@ end
 predictions = eval_split(2)
 
 utils.write_json('OpenEnded_mscoco_lstm_results.json', predictions[1])
---utils.write_json('OpenEnded_mscoco_co-atten_results.json', predictions[1])
 
 
 

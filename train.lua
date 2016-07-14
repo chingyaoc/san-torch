@@ -26,10 +26,10 @@ cmd:text()
 cmd:text('Options')
 
 -- Data input settings
-cmd:option('-input_img_train_h5','../HieCoAttenVQA/data/vqa_data_img_vgg_train_split1.h5','path to the h5file containing the image feature')
-cmd:option('-input_img_test_h5','../HieCoAttenVQA/data/vqa_data_img_vgg_test_split1.h5','path to the h5file containing the image feature')
-cmd:option('-input_ques_h5','../HieCoAttenVQA/data/vqa_data_prepro_split1.h5','path to the h5file containing the preprocessed dataset')
-cmd:option('-input_json','../HieCoAttenVQA/data/vqa_data_prepro_split1.json','path to the json file containing additional info and vocab')
+cmd:option('-input_img_train_h5','data/vqa_data_img_vgg_train.h5','path to the h5file containing the image feature')
+cmd:option('-input_img_test_h5','data/vqa_data_img_vgg_test.h5','path to the h5file containing the image feature')
+cmd:option('-input_ques_h5','data/vqa_data_prepro.h5','path to the h5file containing the preprocessed dataset')
+cmd:option('-input_json','data/vqa_data_prepro.json','path to the json file containing additional info and vocab')
 
 cmd:option('-start_from', '', 'path to a model checkpoint to initialize model weights from. Empty = don\'t')
 cmd:option('-feature_type', 'VGG', 'VGG or Residual')
@@ -269,7 +269,7 @@ local decay_factor = math.exp(math.log(0.1)/opt.learning_rate_decay_every/opt.it
 --local decay_factor = 0.999
 local learning_rate = opt.learning_rate
 -- create the path to save the model.
-paths.mkdir(opt.checkpoint_path .. '_' .. 'TANH')
+paths.mkdir(opt.checkpoint_path .. '_' .. 'MODEL')
 
 while true do
   -- eval loss/gradient
@@ -300,7 +300,7 @@ while true do
       local val_loss, val_accu = eval_split(2)
       print('validation loss: ', val_loss, 'accuracy ', val_accu)
 
-      local checkpoint_path = path.join(opt.checkpoint_path .. '_' .. 'TANH', 'model_id' .. opt.id .. '_iter'.. iter)
+      local checkpoint_path = path.join(opt.checkpoint_path .. '_' .. 'MODEL', 'model_id' .. opt.id .. '_iter'.. iter)
       torch.save(checkpoint_path .. '.t7', {eparams=eparams, aparams=aparams, lmOpt=lmOpt}) 
 
       local checkpoint = {}
@@ -310,7 +310,7 @@ while true do
       checkpoint.accuracy_history = accuracy_history
       checkpoint.learning_rate_history = learning_rate_history
 
-      local checkpoint_path = path.join(opt.checkpoint_path .. '_' .. 'TANH', 'checkpoint' .. '.json')
+      local checkpoint_path = path.join(opt.checkpoint_path .. '_' .. 'MODEL', 'checkpoint' .. '.json')
 
       utils.write_json(checkpoint_path, checkpoint)
       print('wrote json checkpoint to ' .. checkpoint_path .. '.json')
